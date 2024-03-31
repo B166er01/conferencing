@@ -65,6 +65,7 @@ const MeetingTypeList = () => {
     }
   };
 
+  console.log(callDetail, "ct")
   if (!client || !user) return <Loader />;
 
   const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetail?.id}`;
@@ -106,6 +107,8 @@ const MeetingTypeList = () => {
           title="Create Meeting"
           handleClick={createMeeting}
         >
+
+
           <div className="flex flex-col gap-2.5">
             <label className="text-base font-normal leading-[22.4px] text-sky-2">
               Add a description
