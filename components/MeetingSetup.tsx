@@ -10,7 +10,11 @@ import {
 import Alert from './Alert';
 import { Button } from './ui/button';
 
-const MeetingSetup = () => {
+const MeetingSetup = ({
+  setIsSetupComplete,
+}: {
+  setIsSetupComplete: (value: boolean) => void;
+}) => {
   // https://getstream.io/video/docs/react/guides/call-and-participant-state/#call-state
   const { useCallEndedAt, useCallStartsAt } = useCallStateHooks();
   const callStartsAt = useCallStartsAt();
@@ -20,8 +24,6 @@ const MeetingSetup = () => {
   const callHasEnded = !!callEndedAt;
 
   const call = useCall();
-
-  console.log(call)
 
   if (!call) {
     throw new Error(
@@ -70,14 +72,14 @@ const MeetingSetup = () => {
           />
           Join with mic and camera off
         </label>
-        <DeviceSettings />
+        {/* <DeviceSettings /> */}
       </div>
       <Button
         className="rounded-md bg-green-500 px-4 py-2.5"
         onClick={() => {
           call.join();
 
-          // setIsSetupComplete(true);
+          setIsSetupComplete(true);
         }}
       >
         Join meeting
